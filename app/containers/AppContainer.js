@@ -9,6 +9,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { ActionCreators } from '../actions';
 import Home from './Home';
+import ToolBar from './ToolBar';
 import ReactNative from 'react-native';
 const {
   View,
@@ -27,27 +28,8 @@ class AppContainer extends Component {
     // console.log('====> Top AppContainer.js');
     return (
       <View style={styles.container}>
-        <View style={styles.toolbar}>
-          <View>
-            <Text style={styles.text}>
-              <Icon name="thumbs-o-up" color="green" /> {this.props.solved}
-            </Text>
-          </View>
-          <View>
-            <Text style={styles.text}>
-              <Icon name="cog" size={20}/>
-            </Text>
-          </View>
-          <View>
-            <Text style={styles.text}>
-              <Icon name="thumbs-o-down" color="red" /> {this.props.missed}
-            </Text>
-          </View>
-
-        </View>
-        <View style={styles.homeouter}>
-          <Home {...this.props} />
-        </View>
+        <ToolBar {...this.props} />
+        <Home {...this.props} />
       </View>
     )
   }
@@ -59,20 +41,6 @@ const styles = StyleSheet.create({
     marginTop: 20,
     backgroundColor: 'lightgrey',
   },
-  homeouter: {
-    flex: 2
-  },
-  text: {
-    fontSize: 15,
-    fontWeight: 'bold',
-    textAlign: 'center',
-    margin: 5
-  },
-  toolbar: {
-    // flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'space-between'
-  }
 });
 
 function mapDispatchToProps(dispatch) {

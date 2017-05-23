@@ -26,12 +26,26 @@ export const answers = createReducer({}, {
 
 export const solved = createReducer(0, {
   [types.PROBLEM_SOLVED](state, action){
-    return state + 1
+    return state + 1;
   }
 });
 
 export const missed = createReducer(0, {
   [types.PROBLEM_NOT_SOLVED](state, action){
-    return state + 1
+    return state + 1;
   }
 });
+
+export const seed = createReducer(10, {
+  [types.SEED_INCREASED](state, action){
+    return state + 10;
+  }
+})
+
+export const variance = createReducer(10, {
+
+})
+
+export const levelSteps = createReducer(10, {
+
+})

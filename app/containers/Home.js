@@ -4,7 +4,6 @@ import ReactNative from 'react-native';
 const {
   View,
   Text,
-  // TouchableHighlight,
   TouchableHighlight,
   StyleSheet
 } = ReactNative;
@@ -30,7 +29,8 @@ class Home extends Component {
           key={id}
           style={styles.answer_button}
           underlayColor={ answer.correct ? "green" : "orange" }
-          onPress={ answer.correct ? () => this.problemSolved() : () => this.problemNotSolved() } >
+          onPress={ answer.correct ? () => this.problemSolved() : () => this.problemNotSolved() }
+        >
           <Text style={styles.text}>{answer.value}</Text>
         </TouchableHighlight>
       );
@@ -40,7 +40,11 @@ class Home extends Component {
       <View style={styles.field}>
         <View style={styles.formula}>
           <Text style={styles.text}>
-            {this.props.problem.members[0]} {this.props.problem.operation[0]} {this.props.problem.members[1]}
+            {this.props.problem.members[0]}
+            &nbsp;
+            {this.props.problem.operation[0]}
+            &nbsp;
+            {this.props.problem.members[1]}
           </Text>
         </View>
         <View style={styles.answers}>

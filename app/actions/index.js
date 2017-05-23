@@ -1,4 +1,4 @@
-import * as ProblemActions from './problems'
+import * as ProblemActions from './actions';
 
 export const ActionCreators = Object.assign({},
   ProblemActions,
