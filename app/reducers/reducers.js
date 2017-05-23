@@ -40,12 +40,19 @@ export const seed = createReducer(10, {
   [types.SEED_INCREASED](state, action){
     return state + 10;
   }
-})
+});
 
 export const variance = createReducer(10, {
 
-})
+});
 
-export const levelSteps = createReducer(10, {
+export const levelSteps = createReducer(2, {
 
-})
+});
+
+export const dadJoke = createReducer({}, {
+  [types.JOKE_FETCHED](state, action){
+    console.log(" ===> reducer dadJoke. state: ", state, "action: ", action);
+    return action.joke;
+  }
+});

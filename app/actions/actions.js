@@ -1,4 +1,31 @@
-import * as types from './types'
+import * as types from './types';
+
+export function fetchJoke() {
+  return (dispatch, getState) => {
+    fetch('https://icanhazdadjoke.com/', {
+      method: 'GET',
+      headers: {
+        'Accept': 'application/json',
+      },
+    })
+    .then((response) => response.json())
+    .then((responseJson) => {
+      console.log("my joke", responseJson);
+      dispatch(jokeFetched(responseJson));
+    })
+    .catch((error) => {
+      console.error("fetch error:", error);
+    });
+  }
+}
+
+export function jokeFetched(joke) {
+  console.log("===> Inside jokeFetched action: got this:", joke);
+  return {
+    type: types.JOKE_FETCHED,
+    joke
+  }
+}
 
 export function problemSolved() {
   // console.log("===> Inside addProblem action")

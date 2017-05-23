@@ -22,6 +22,7 @@ class AppContainer extends Component {
   componentWillMount(){
     // create the problem before going to <Home>
     this.props.createProblem();
+    this.props.fetchJoke();
   }
 
   render() {

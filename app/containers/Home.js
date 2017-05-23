@@ -9,7 +9,6 @@ const {
 } = ReactNative;
 
 class Home extends Component {
-
   problemSolved() {
     this.props.problemSolved();
     this.props.createProblem();
