@@ -46,13 +46,23 @@ export const variance = createReducer(10, {
 
 });
 
-export const levelSteps = createReducer(2, {
+export const levelSteps = createReducer(10, {
 
 });
 
-export const dadJoke = createReducer({}, {
+export const dadJoke = createReducer({joke: "...wait for it..."}, {
   [types.JOKE_FETCHED](state, action){
-    console.log(" ===> reducer dadJoke. state: ", state, "action: ", action);
+    // console.log(" ===> reducer dadJoke. state: ", state, "action: ", action);
     return action.joke;
   }
 });
+
+export const dadJokeVisible = createReducer(true, {
+  [types.SHOW_HIDE_JOKE](state, action){
+    if (state) {
+      return false;
+    } else {
+      return true;
+    }
+  }
+})

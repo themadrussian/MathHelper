@@ -6,10 +6,16 @@ const {
   View,
   Text,
   TouchableHighlight,
-  StyleSheet
+  TouchableOpacity,
+  StyleSheet,
+  // Modal
 } = ReactNative;
+import Modal from 'react-native-modal';
 
 class ToolBar extends Component {
+
+  _toggleJoke = () => this.props.toggleJoke()
+
   render() {
     return (
       <View style={styles.toolbar}>
@@ -28,11 +34,23 @@ class ToolBar extends Component {
             <Icon name="thumbs-o-down" color="red" size={20} /> {this.props.missed}
           </Text>
         </View>
-        <View>
+        <Modal isVisible={this.props.dadJokeVisible}>
+          <TouchableOpacity onPress={this._toggleJoke} style={styles.modalContent}>
+            <Text style={styles.heyGirl}>Time for a dad joke!</Text>
+            <Text style={styles.dadJoke}>
+              {this.props.dadJoke.joke}
+            </Text>
+            <Text style={styles.smallPrint}>
+              For more jokes solve more problems!
+            </Text>
+          </TouchableOpacity>
+        </Modal>
+        <TouchableOpacity onPress={this._toggleJoke}>
           <Text style={styles.text}>
-            <Icon name="cog" size={20}/>
+            <Icon name="smile-o" size={20}/>
           </Text>
-        </View>
+        </TouchableOpacity>
+
       </View>
     )
   }
@@ -50,6 +68,34 @@ const styles = StyleSheet.create({
     // flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-between'
+  },
+  modalContent: {
+    backgroundColor: 'white',
+    padding: 22,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 4,
+    borderColor: 'rgba(0, 0, 0, 0.1)',
+  },
+  heyGirl: {
+    fontSize: 25,
+    fontWeight: 'bold',
+    color: "green",
+  },
+  dadJoke: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: "darkblue",
+    margin: 20,
+    textAlign: 'center',
+    borderColor: "darkblue",
+    borderRadius: 5,
+  },
+  smallPrint: {
+    fontSize: 10,
+    fontWeight: 'normal',
+    color: "darkgray",
+    textAlign: 'center'
   }
 });
 
@@ -58,7 +104,9 @@ function mapStateToProps(state){
     scoreCount: state.scoreCount,
     solved: state.solved,
     missed: state.missed,
-    seed: state.seed
+    seed: state.seed,
+    dadJoke: state.dadJoke,
+    dadJokeVisible: state.dadJokeVisible
   }
 };
 

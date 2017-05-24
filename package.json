@@ -1,6 +1,7 @@
 {
   "name": "MathHelper",
   "version": "0.0.1",
+  "desciption": "Mobile app for teaching kids math",
   "private": true,
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
@@ -11,6 +12,7 @@
     "react": "16.0.0-alpha.6",
     "react-logger": "^1.1.0",
     "react-native": "0.44.0",
+    "react-native-modal": "^2.4.0",
     "react-native-vector-icons": "^4.1.1",
     "react-redux": "^5.0.5",
     "redux": "^3.6.0",
@@ -25,5 +27,8 @@
   },
   "jest": {
     "preset": "react-native"
-  }
+  },
+  "author": "Mark Rogov",
+  "homepage": "https://github.com/themadrussian/MathHelper",
+  "license": "MIT"
 }

@@ -14,7 +14,9 @@ import ReactNative from 'react-native';
 const {
   View,
   Text,
-  StyleSheet
+  StyleSheet,
+  Modal,
+  TouchableHighlight
 } = ReactNative;
 import Icon from 'react-native-vector-icons/FontAwesome';
 
@@ -31,6 +33,7 @@ class AppContainer extends Component {
       <View style={styles.container}>
         <ToolBar {...this.props} />
         <Home {...this.props} />
+
       </View>
     )
   }

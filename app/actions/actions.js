@@ -10,7 +10,7 @@ export function fetchJoke() {
     })
     .then((response) => response.json())
     .then((responseJson) => {
-      console.log("my joke", responseJson);
+      // console.log("my joke", responseJson);
       dispatch(jokeFetched(responseJson));
     })
     .catch((error) => {
@@ -20,11 +20,16 @@ export function fetchJoke() {
 }
 
 export function jokeFetched(joke) {
-  console.log("===> Inside jokeFetched action: got this:", joke);
-  return {
-    type: types.JOKE_FETCHED,
-    joke
+  if (typeof(joke) != "undefined") {
+    return {
+      type: types.JOKE_FETCHED,
+      joke
+    }
+  } else {
+    // console.log("ok, try to generate the joke.");
+    return fetchJoke();
   }
+
 }
 
 export function problemSolved() {
@@ -62,6 +67,12 @@ export function seedIncreased() {
   }
 }
 
+export function toggleJoke() {
+  return {
+    type: types.SHOW_HIDE_JOKE,
+  }
+}
+
 export function createProblem() {
   // first, checkProgress
   // checkProgress();
@@ -72,6 +83,8 @@ export function createProblem() {
     if ( getState().solved > 0 && getState().solved%getState().levelSteps === 0 ) {
       dispatch(seedIncreased());
       console.log("increasing seed to: ", getState().seed);
+      dispatch(jokeFetched());
+      dispatch(toggleJoke());
     }
 
     let allNumbers = [];
