@@ -86,13 +86,13 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: 'bold',
     color: "darkblue",
-    margin: 20,
+    padding: 20,
     textAlign: 'center',
     borderColor: "darkblue",
     borderRadius: 5,
   },
   smallPrint: {
-    fontSize: 10,
+    fontSize: 12,
     fontWeight: 'normal',
     color: "darkgray",
     textAlign: 'center'
