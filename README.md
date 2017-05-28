@@ -12,7 +12,7 @@ Eery solved problem -> plus a point. Solve 10, get another joke.
 To install on your device, follow these steps (hightly untested!)
 
 ## IOS
-From a mac, download the code from git.
+From a mac, download the code from git.  
 `git clone https://github.com/themadrussian/mathhelper.git`  
   
 Make sure you have Xcode installed.  
