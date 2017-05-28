@@ -46,14 +46,42 @@ export const variance = createReducer(10, {
 
 });
 
-export const levelSteps = createReducer(10, {
+export const levelSteps = createReducer(3, {
 
 });
+
+export const jokeOrFact = createReducer(true, {
+  [types.PROBLEM_SOLVED](state, action){
+    return ( state ? false : true )
+  },
+
+  [types.PROBLEM_NOT_SOLVED](state, action){
+    return ( state ? false : true )
+  }
+
+})
+
+export const previousStepSolved = createReducer(true, {
+  [types.PROBLEM_SOLVED](state, action){
+    return true;
+  },
+
+  [types.PROBLEM_NOT_SOLVED](state, action){
+    return false;
+  }
+})
 
 export const dadJoke = createReducer({joke: "...wait for it..."}, {
   [types.JOKE_FETCHED](state, action){
     // console.log(" ===> reducer dadJoke. state: ", state, "action: ", action);
     return action.joke;
+  }
+});
+
+export const catFact = createReducer({fact: "...wait for a fresh cat fact..."}, {
+  [types.CAT_FACT_FETCHED](state, action){
+    console.log(" ===> reducer dadJoke. state: ", state, "action: ", action);
+    return action.fact;
   }
 });
 
@@ -64,5 +92,12 @@ export const dadJokeVisible = createReducer(true, {
     } else {
       return true;
     }
+  }
+})
+
+export const allNumbers = createReducer([],{
+  [types.PROBLEM_CREATED](state, action){
+    // every time a problem is created, null out the allNumber
+    return [];
   }
 })

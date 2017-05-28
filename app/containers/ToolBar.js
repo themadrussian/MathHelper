@@ -36,9 +36,11 @@ class ToolBar extends Component {
         </View>
         <Modal isVisible={this.props.dadJokeVisible}>
           <TouchableOpacity onPress={this._toggleJoke} style={styles.modalContent}>
-            <Text style={styles.heyGirl}>Time for a dad joke!</Text>
+            <Text style={styles.heyGirl}>Time for a {this.props.jokeOrFact ? "dad joke" : "cat fact"}!</Text>
             <Text style={styles.dadJoke}>
-              {this.props.dadJoke.joke}
+              {
+                this.props.jokeOrFact ? this.props.dadJoke.joke : this.props.catFact[0]
+              }
             </Text>
             <Text style={styles.smallPrint}>
               For more jokes solve more problems!
@@ -106,7 +108,9 @@ function mapStateToProps(state){
     missed: state.missed,
     seed: state.seed,
     dadJoke: state.dadJoke,
-    dadJokeVisible: state.dadJokeVisible
+    dadJokeVisible: state.dadJokeVisible,
+    jokeOrFact: state.jokeOrFact,
+    catFact: state.catFact
   }
 };
 
