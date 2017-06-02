@@ -59,8 +59,48 @@ export function seedIncreased() {
   }
 }
 
-export function toggleJoke() {
+export function rewardToggled() {
   return {
-    type: types.SHOW_HIDE_JOKE,
+    type: types.REWARD_TOGGLED,
+  }
+}
+
+export function settingsToggled() {
+  return {
+    type: types.SETTINGS_TOGGLED,
+  }
+}
+
+export function levelStepsChanged(level) {
+  return {
+    type: types.LEVEL_STEPS_CHANGED,
+    level
+  }
+}
+
+export function rewardFrequencyChanged(frequency) {
+  return {
+    type: types.REWARD_FREQUENCY_CHANGED,
+    frequency
+  }
+}
+
+export function catFactToggled() {
+  return {
+    type: types.CAT_FACT_TOGGLED
+  }
+}
+
+export function dadJokeToggled(toggle) {
+  return {
+    type: types.DAD_JOKE_TOGGLED,
+    toggle
+  }
+}
+
+export function nextRewardSet() {
+  return {
+    type: types.NEXT_REWARD_SET,
+    // reward
   }
 }

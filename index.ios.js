@@ -19,7 +19,7 @@ function configureStore(initialState) {
     ),
     //second argument to compose is empty
   );
-  console.log('====> inside configureStore');
+  // console.log('====> inside configureStore');
   return createStore(reducer, initialState, enhancer);
 }
 

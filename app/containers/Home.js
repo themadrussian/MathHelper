@@ -11,11 +11,16 @@ const {
 class Home extends Component {
   problemSolved() {
     this.props.problemSolved();
-    this.props.createProblem();
+    this.nextScreen();
   }
 
   problemNotSolved() {
     this.props.problemNotSolved();
+    this.nextScreen();
+  }
+
+  nextScreen() {
+    this.props.showReward();
     this.props.createProblem();
   }
 
@@ -85,7 +90,6 @@ const styles = StyleSheet.create({
 
 function mapStateToProps(state){
   return {
-    // scoreCount: state.scoreCount,
     problem: state.problem,
     answers: state.answers
   }

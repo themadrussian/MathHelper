@@ -6,7 +6,7 @@ Start with a joke, from the cool people of: https://icanhazdadjoke.com/
 Eery solved problem -> plus a point. Solve 10, get another joke.
 
 ## Screenshot
-![](./ScreenShot.png) ![](./ScreenShot2.png)
+![](./ScreenShot.png) ![](./ScreenShot2.png) ![](./ScreenShot3.png)
 
 # Install
 To install on your device, follow these steps (hightly untested!)

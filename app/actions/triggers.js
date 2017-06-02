@@ -14,13 +14,13 @@ export function fetchJoke() {
       dispatch(Actions.jokeFetched(responseJson));
     })
     .catch((error) => {
-      console.error("fetch error:", error);
+      // console.error("Joke fetch error:", error);
     });
   }
 }
 
 export function fetchCatJoke() {
-  console.log("===> inside fetchCatJoke");
+  // console.log("===> inside fetchCatJoke");
   return (dispatch) => {
     fetch('http://catfacts-api.appspot.com/api/facts?number=1', {
       method: 'GET'
@@ -30,28 +30,72 @@ export function fetchCatJoke() {
     })
     .then((response) => response.json())
     .then((responseJson) => {
-      console.log("my cat fact", responseJson);
+      // console.log("my cat fact", responseJson);
       if (responseJson.success) {
         dispatch(Actions.catFactFetched(responseJson.facts));
       }
     })
     .catch((error) => {
-      console.error("fetch error:", error);
+      // console.error("Cat fact fetch error:", error);
     });
   }
 }
 
+export function showReward(apppress = 0) {
+  return (dispatch, getState ) => {
+    if (apppress) {// this came from the ToolBar, simple repeat
+      if (getState().enableCatFact || getState().enableDadJokes) {
+        //if one of them is true -- show the reward
+        dispatch(Actions.rewardToggled());
+      }
+
+    } else {
+      // decide whather to show the reward or not
+      if (getState().stepsCount%getState().rewardFrequency === 0
+         || (getState().solved > 0
+            && getState().solved%getState().levelSteps === 0
+            && getState().previousStepSolved)) {
+        // first display a reward.
+        dispatch(Actions.rewardToggled());
+        dispatch(Actions.nextRewardSet());
+        dispatch(Actions.jokeFetched());
+        dispatch(Actions.catFactFetched());
+
+        // // then fetch the next one
+        // if (getState().jokeOrFact) {
+        //   // true is joke
+        //   if (getState().enableDadJokes) dispatch(Actions.jokeFetched());
+        // } else {
+        //   // false is a cat fact
+        //   if (getState().enableCatFact) dispatch(Actions.catFactFetched());
+        // }
+      }
+    }
+  }
+}
 
 export function createProblem() {
   return (dispatch, getState ) => {
+    // first run -- pre-fetch both rewards
+    if (getState().stepsCount === 0) {
+      // console.log("===> First run. Fetching both");
+      dispatch(Actions.jokeFetched());
+      dispatch(Actions.catFactFetched());
+    };
+
     // increase seed every 'levelSteps' solved problems
     // make sure previousStepSolved is true (to stop perpetual jokes)
-    if ( getState().solved > 0 && getState().solved%getState().levelSteps === 0 && getState().previousStepSolved) {
+    if ( getState().solved > 0
+      && getState().solved%getState().levelSteps === 0
+      && getState().previousStepSolved) {
+
       dispatch(Actions.seedIncreased());
       // console.log("increasing seed to: ", getState().seed);
-      getState().jokeOrFact ? dispatch(Actions.jokeFetched()) : dispatch(Actions.catFactFetched());
-      dispatch(Actions.toggleJoke());
+      // getState().jokeOrFact ? dispatch(Actions.jokeFetched()) : dispatch(Actions.catFactFetched());
+      // dispatch(Actions.rewardToggled());
     }
+
+    // _this.showReward();
 
     let antiLoop = 0;
 
