@@ -104,3 +104,9 @@ export function nextRewardSet() {
     // reward
   }
 }
+
+export function answerInputChanged() {
+  return {
+    type: types.ANSWER_INPUT_CHANGED
+  }
+}

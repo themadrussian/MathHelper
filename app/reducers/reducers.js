@@ -122,5 +122,11 @@ export const rewardHeader = createReducer("dad joke", {
 });
 
 export const rewardBody = createReducer("...wait for it...", {
-  
+
 });
+
+export const answerInput = createReducer(true, {
+  [types.ANSWER_INPUT_CHANGED](state, action){
+    return (state ? false : true );
+  }
+})

@@ -15,6 +15,7 @@ const {
 } = ReactNative;
 import Modal from 'react-native-modal';
 import { levelStepsChanged, settingsToggled } from '../actions/actions';
+import styles from '../css/stylesSettings';
 
 class Settings extends Component {
   constructor(props) {
@@ -24,6 +25,7 @@ class Settings extends Component {
       enableDadJokes: this.props.enableDadJokes,
       enableCatFact: this.props.enableCatFact,
       newRewardFrequency: this.props.rewardFrequency,
+      answerInput: this.props.answerInput,
     }
   }
 
@@ -40,6 +42,9 @@ class Settings extends Component {
     if (this.props.enableDadJokes !== this.state.enableDadJokes) {
       this.props.dadJokeToggled();
     }
+    if (this.props.answerInput !== this.state.answerInput){
+      this.props.answerInputChanged();
+    }
 
     this.props.settingsToggled();
   }
@@ -52,7 +57,7 @@ class Settings extends Component {
           <View style={styles.oneSetting}>
             <View style={styles.oneSettingInputArea}>
               <Text style={styles.settingName}>
-                Level Length:
+                Add Complexity Every:
               </Text>
               <TextInput style={styles.settingInput}
                   keyboardType="numeric"
@@ -66,7 +71,7 @@ class Settings extends Component {
           <View style={styles.oneSetting}>
             <View style={styles.oneSettingInputArea}>
               <Text style={styles.settingName}>
-                Reward Frequency:
+                Show Reward Every:
               </Text>
               <TextInput style={styles.settingInput}
                   keyboardType="numeric"
@@ -79,7 +84,21 @@ class Settings extends Component {
           </View>
           <View style={styles.oneSettingInputArea}>
             <Text style={styles.settingName}>
-              Dad Jokes
+              {this.state.answerInput ? "3 Choice Answers" : "Rolldown Answer Pick"}
+            </Text>
+            <Switch
+              onValueChange={(value) => this.setState({answerInput: value})}
+              onTintColor="#00ff00"
+              // tintColor="#0000ff"
+              value={this.state.answerInput} />
+          </View>
+          <View>
+            <View style={{borderWidth: 1, borderColor: "grey", borderRadius: 10, margin: 10}}>
+            </View>
+          </View>
+          <View style={styles.oneSettingInputArea}>
+            <Text style={styles.settingName}>
+              {this.state.enableDadJokes ? "Dad Jokes" : "Dad Jokes Disabled"}
             </Text>
             <Switch
               onValueChange={(value) => this.setState({enableDadJokes: value})}
@@ -88,7 +107,7 @@ class Settings extends Component {
           </View>
           <View style={styles.oneSettingInputArea}>
             <Text style={styles.settingName}>
-              Cat Facts
+              {this.state.enableCatFact ? "Cat Facts" : "Cat Facts Disabled"}
             </Text>
             <Switch
               onValueChange={(value) => this.setState({enableCatFact: value})}
@@ -105,73 +124,13 @@ class Settings extends Component {
   }
 };
 
-const styles = StyleSheet.create({
-  modalContent: {
-    backgroundColor: 'white',
-    padding: 5,
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 4,
-  },
-  settingsHeader: {
-    fontSize: 25,
-    fontWeight: 'bold',
-    color: "blue",
-  },
-  settingsBody: {
-    padding: 5,
-  },
-  saveButton: {
-    margin: 5,
-    borderWidth: 1,
-    borderColor: "blue",
-    borderRadius: 30,
-    backgroundColor: "blue",
-    justifyContent: 'center',
-    alignItems: 'center',
-    alignSelf: 'stretch'
-  },
-  saveButtonText: {
-    margin: 4,
-    color: "white",
-    fontSize: 20,
-    fontWeight: 'bold',
-  },
-  oneSetting: {
-    borderWidth: 0
-  },
-  oneSettingInputArea: {
-    flexDirection: "row",
-    margin: 5,
-    justifyContent: 'space-between'
-  },
-  settingName: {
-    fontSize: 15,
-    fontWeight: 'bold',
-    textAlign: 'center',
-    margin: 6
-  },
-  settingInput: {
-    width: 50,
-    borderColor: "red",
-    borderLeftWidth: 1,
-    marginLeft: 15,
-    color: "red"
-  },
-  settingHelp: {
-    fontSize: 12,
-    fontWeight: 'normal',
-    color: "darkgray",
-    textAlign: 'center'
-  },
-});
-
 function mapStateToProps(state){
   return {
     levelSteps: state.levelSteps,
     rewardFrequency: state.rewardFrequency,
     enableCatFact: state.enableCatFact,
     enableDadJokes: state.enableDadJokes,
+    answerInput: state.answerInput,
   }
 };
 

@@ -1,7 +1,3 @@
-// import ReactNative from 'react-native';
-// const { StyleSheet } = ReactNative;
-
-// export const styles = StyleSheet.create({
 module.exports = {
   text: {
     fontSize: 20,
