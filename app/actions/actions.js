@@ -110,3 +110,10 @@ export function answerInputChanged() {
     type: types.ANSWER_INPUT_CHANGED
   }
 }
+
+export function fullReset() {
+  // Triggers.createProblem();
+  return {
+    type: types.FULL_RESET,
+  }
+}

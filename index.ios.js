@@ -6,7 +6,7 @@ import { createLogger } from 'redux-logger'
 
 import { AppRegistry } from 'react-native'
 import AppContainer from './app/containers/AppContainer'
-import reducer from './app/reducers'
+import {reducer} from './app/reducers'
 
 // middleware that logs actions
 const loggerMiddleware = createLogger({ predicate: (getState, action) => __DEV__  });
@@ -14,12 +14,11 @@ const loggerMiddleware = createLogger({ predicate: (getState, action) => __DEV__
 function configureStore(initialState) {
   const enhancer = compose(
     applyMiddleware(
-      thunkMiddleware, // lets us dispatch() functions
-      loggerMiddleware, //enabled logging
+      thunkMiddleware,  // dispatch() functions
+      loggerMiddleware, // enabled logging
     ),
     //second argument to compose is empty
   );
-  // console.log('====> inside configureStore');
   return createStore(reducer, initialState, enhancer);
 }
 

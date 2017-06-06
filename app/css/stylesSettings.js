@@ -9,17 +9,27 @@ module.exports = {
   settingsHeader: {
     fontSize: 25,
     fontWeight: 'bold',
-    color: "blue",
+    color: "steelblue",
   },
   settingsBody: {
     padding: 5,
   },
   saveButton: {
     margin: 5,
-    borderWidth: 1,
-    borderColor: "blue",
+    // borderWidth: 1,
+    // borderColor: "blue",
     borderRadius: 30,
-    backgroundColor: "blue",
+    backgroundColor: "steelblue",
+    justifyContent: 'center',
+    alignItems: 'center',
+    alignSelf: 'stretch'
+  },
+  resetButton: {
+    margin: 5,
+    // borderWidth: 1,
+    // borderColor: "blue",
+    borderRadius: 30,
+    backgroundColor: "pink",
     justifyContent: 'center',
     alignItems: 'center',
     alignSelf: 'stretch'

@@ -49,10 +49,18 @@ class Settings extends Component {
     this.props.settingsToggled();
   }
 
+  _fullReset = () => {
+    this.props.fullReset();
+    this.props.createProblem();
+  }
+
   render() {
     return (
       <View style={styles.modalContent}>
         <Text style={styles.settingsHeader}>Settings</Text>
+        <TouchableHighlight onPress={this._fullReset} style={styles.resetButton}>
+          <Text style={styles.saveButtonText}>Reset Everthing</Text>
+        </TouchableHighlight>
         <View style={styles.settingsBody}>
           <View style={styles.oneSetting}>
             <View style={styles.oneSettingInputArea}>
@@ -119,6 +127,7 @@ class Settings extends Component {
         <TouchableHighlight onPress={this._savePressed} style={styles.saveButton}>
           <Text style={styles.saveButtonText}>Save!</Text>
         </TouchableHighlight>
+
       </View>
     )
   }
