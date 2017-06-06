@@ -23,4 +23,4 @@ Make sure you have Xcode installed.
 `react-native run-ios --device "Mark's iPhone" --configuration Release`  
 
 # License
-MIT. Copyright (c) 2017 Mark Rogov.
+MIT. Use as you like.
