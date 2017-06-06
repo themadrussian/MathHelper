@@ -8,7 +8,7 @@ Every solved problem -> plus a point. Solve 10, get another joke.
 
 ## Screenshot
 ![](./ScreenShot.png) ![](./ScreenShot2.png) 
-![](./ScreenShot3.png =318x567) ![](./ScreenShot4.png){:height="567px" width="318px"}
+![](./ScreenShot3.png) ![](./ScreenShot4.png)
 
 # Install
 To install on your device, follow these steps (hightly untested!)
