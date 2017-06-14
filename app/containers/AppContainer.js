@@ -1,7 +1,7 @@
 //React & React-Native libs
 import React, { Component } from 'react';
 import ReactNative from 'react-native';
-const { View, StyleSheet } = ReactNative;
+const { View, StyleSheet, Image } = ReactNative;
 
 //Redux libs
 import { connect } from 'react-redux';
@@ -23,9 +23,15 @@ class AppContainer extends Component {
 
   render() {
     return (
-      <View style={styles.container}>
-        <ToolBar {...this.props} />
-        <Home {...this.props} />
+      <View>
+        <Image
+          style={{width: '100%', height: '100%'}}
+          source={{ uri: 'https://cdn.pixabay.com/photo/2017/05/11/18/20/cool-2304975_960_720.jpg' }}>
+          <View style={styles.container}>
+            <ToolBar {...this.props} />
+            <Home {...this.props} />
+          </View>
+        </Image>
       </View>
     )
   }
@@ -35,6 +41,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     marginTop: 20, // keep the app below the signal/battery bar on the phone
+
   },
 });
 

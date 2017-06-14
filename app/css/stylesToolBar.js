@@ -3,7 +3,9 @@ module.exports = {
     fontSize: 20,
     fontWeight: 'bold',
     textAlign: 'center',
-    margin: 6
+    margin: 6,
+    backgroundColor: 'rgba(0,0,0,0)',
+    color: 'white'
   },
   toolbar: {
     // flex: 1,

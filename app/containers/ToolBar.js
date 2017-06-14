@@ -43,23 +43,23 @@ class ToolBar extends Component {
 
     return (
       <View style={styles.toolbar}>
-        <TouchableOpacity onPress={this._rewardToggled}>
+        {/* <TouchableOpacity onPress={this._rewardToggled}>
           <Text style={styles.text}>
             <Icon name="thumbs-o-up" color="green" size={20} /> {this.props.solved}
           </Text>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
 
         <TouchableOpacity onPress={this._settingsToggled}>
           <Text style={styles.text}>
-            <Icon name="cog" size={20}/>
+            <Icon name="bars" size={20}/>
           </Text>
         </TouchableOpacity>
 
-        <TouchableOpacity onPress={this._rewardToggled}>
+        {/* <TouchableOpacity onPress={this._rewardToggled}>
           <Text style={styles.text}>
             <Icon name="thumbs-o-down" color="red" size={20} /> {this.props.missed}
           </Text>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
 
         <Modal isVisible={keepModalHidden ? keepModalHidden : this.props.rewardVisible}>
           <TouchableOpacity onPress={() => this.props.rewardToggled()} style={styles.modalContent}>
