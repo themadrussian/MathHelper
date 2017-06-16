@@ -55,10 +55,22 @@ class Settings extends Component {
   }
 
   render() {
+    let answerInput = [];
+
+    if (this.props.answerInput) {
+      answerInput.push(
+          <Text style={styles.text} key="3buttons">3 Buttons</Text>
+      );
+    } else {
+      answerInput.push(
+          <Text style={styles.text} key="rolldown">Rolldown</Text>
+      );
+    }
+
     return (
-      <View style={styles.modalContent}>
-        <Text style={styles.settingsHeader}>Settings</Text>
-        <TouchableHighlight onPress={this._fullReset} style={styles.resetButton}>
+      <View style={styles.settingsTop}>
+
+        {/* <TouchableHighlight onPress={this._fullReset} style={styles.resetButton}>
           <Text style={styles.saveButtonText}>Reset Everthing</Text>
         </TouchableHighlight>
         <View style={styles.settingsBody}>
@@ -99,33 +111,56 @@ class Settings extends Component {
               onTintColor="#00ff00"
               // tintColor="#0000ff"
               value={this.state.answerInput} />
-          </View>
+          </View> */}
+        <TouchableHighlight
+          key="Answer"
+          style={styles.settingsButtonOff}
+          // underlayColor={ answer.correct ? "#E2F0DA" : "#FFCCCC" }
+          onPress={() => this.props.answerInputChanged()}
+          // onHideUnderlay={() => this._onHideUnderlay(id)}
+          // onShowUnderlay={() => this._onShowUnderlay(id)}
+        >
           <View>
-            <View style={{borderWidth: 1, borderColor: "grey", borderRadius: 10, margin: 10}}>
-            </View>
-          </View>
-          <View style={styles.oneSettingInputArea}>
-            <Text style={styles.settingName}>
-              {this.state.enableDadJokes ? "Dad Jokes" : "Dad Jokes Disabled"}
+            <Text style={styles.text}>
+              <Icon name="arrows-alt" size={30} key="reset" />&nbsp;Answer Style
             </Text>
-            <Switch
-              onValueChange={(value) => this.setState({enableDadJokes: value})}
-              onTintColor="#00ff00"
-              value={this.state.enableDadJokes} />
-          </View>
-          <View style={styles.oneSettingInputArea}>
-            <Text style={styles.settingName}>
-              {this.state.enableCatFact ? "Cat Facts" : "Cat Facts Disabled"}
-            </Text>
-            <Switch
-              onValueChange={(value) => this.setState({enableCatFact: value})}
-              onTintColor="#00ff00"
-              value={this.state.enableCatFact} />
+            {answerInput}
           </View>
 
-        </View>
-        <TouchableHighlight onPress={this._savePressed} style={styles.saveButton}>
-          <Text style={styles.saveButtonText}>Save!</Text>
+        </TouchableHighlight>
+
+
+        <TouchableHighlight
+          key="Dad"
+          style={this.props.enableDadJokes ? styles.settingsButton : styles.settingsButtonOff}
+          // underlayColor={ answer.correct ? "#E2F0DA" : "#FFCCCC" }
+          onPress={() => this.props.dadJokeToggled()}
+          // onHideUnderlay={() => this._onHideUnderlay(id)}
+          // onShowUnderlay={() => this._onShowUnderlay(id)}
+        >
+          <Text style={styles.text}><Icon name="mars" size={30} key="reset" />&nbsp;Dad Facts</Text>
+        </TouchableHighlight>
+
+        <TouchableHighlight
+          key="Cat"
+          style={this.props.enableCatFact ? styles.settingsButton : styles.settingsButtonOff}
+          // underlayColor={ answer.correct ? "#E2F0DA" : "#FFCCCC" }
+          onPress={() => this.props.catFactToggled()}
+          // onHideUnderlay={() => this._onHideUnderlay(id)}
+          // onShowUnderlay={() => this._onShowUnderlay(id)}
+        >
+          <Text style={styles.text}><Icon name="paw" size={30} key="reset" />&nbsp;Cat Facts</Text>
+        </TouchableHighlight>
+
+        <TouchableHighlight
+          key="Reset"
+          style={styles.settingsButtonOff}
+          // underlayColor={ answer.correct ? "#E2F0DA" : "#FFCCCC" }
+          onPress={this._fullReset}
+          // onHideUnderlay={() => this._onHideUnderlay(id)}
+          // onShowUnderlay={() => this._onShowUnderlay(id)}
+        >
+          <Text style={styles.text}><Icon name="refresh" size={30} key="reset" />&nbsp;Reset All</Text>
         </TouchableHighlight>
 
       </View>

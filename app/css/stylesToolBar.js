@@ -1,16 +1,37 @@
 module.exports = {
   text: {
+    flex: 1,
+    fontSize: 20,
+    fontWeight: 'bold',
+    // textAlign: 'center',
+    // justifyContent: 'center',
+    margin: 6,
+    backgroundColor: 'rgba(0,0,0,0)',
+    color: 'white',
+    // borderWidth: 1,
+  },
+  settingsTitle: {
+    flex: 3,
     fontSize: 20,
     fontWeight: 'bold',
     textAlign: 'center',
+    justifyContent: 'center',
     margin: 6,
     backgroundColor: 'rgba(0,0,0,0)',
-    color: 'white'
+    color: 'white',
+    // borderWidth: 1,
   },
   toolbar: {
     // flex: 1,
     flexDirection: 'row',
-    justifyContent: 'space-between'
+    justifyContent: 'center',
+
+  },
+  backButton: {
+    flex: 1,
+    justifyContent: 'center',
+    // margin: 6,
+    backgroundColor: 'rgba(0,0,0,0)',
   },
   modalContent: {
     backgroundColor: 'white',
@@ -37,7 +58,7 @@ module.exports = {
   smallPrint: {
     fontSize: 12,
     fontWeight: 'normal',
-    color: "darkgray",
+    color: "white",
     textAlign: 'center'
   },
   settingsModal: {

@@ -1,7 +1,7 @@
 //React & React-Native libs
 import React, { Component } from 'react';
 import ReactNative from 'react-native';
-const { View, StyleSheet, Image } = ReactNative;
+const { View } = ReactNative;
 
 //Redux libs
 import { connect } from 'react-redux';
@@ -11,8 +11,7 @@ import { bindActionCreators } from 'redux';
 import { ActionCreators } from '../actions';
 
 // Containers
-import Home from './Home';
-import ToolBar from './ToolBar';
+import InsideContainer from './InsideContainer';
 
 // Define top level Container
 class AppContainer extends Component {
@@ -24,26 +23,11 @@ class AppContainer extends Component {
   render() {
     return (
       <View>
-        <Image
-          style={{width: '100%', height: '100%'}}
-          source={{ uri: 'https://cdn.pixabay.com/photo/2017/05/11/18/20/cool-2304975_960_720.jpg' }}>
-          <View style={styles.container}>
-            <ToolBar {...this.props} />
-            <Home {...this.props} />
-          </View>
-        </Image>
+        <InsideContainer {...this.props}/>
       </View>
     )
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    marginTop: 20, // keep the app below the signal/battery bar on the phone
-
-  },
-});
 
 //this function makes action fucntion available for the entire app
 function mapDispatchToProps(dispatch) {

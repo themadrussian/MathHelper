@@ -51,19 +51,50 @@ class Home extends Component {
   findDimensions(event) {
     this.setState({
       maxBoxes: Math.floor(event.nativeEvent.layout.height / 13) //13 is the size of score box. TODO fix this.
+      // maxBoxes: 4 //DEBUG
     });
+  }
+
+  _buildScore(score,color=true) {
+    var testArray = [];
+    var allArray = [];
+    var j = 1;
+    var max=this.state.maxBoxes;
+    var numOfColumns = Math.floor(score/max);
+
+    for (var i = 1; i <= score; i++) {
+      if ( (i === 1 && score < max ) || //first box of first column
+           (i === (numOfColumns*max+1) && score != numOfColumns*max) || // first box of last column
+           (i === ((numOfColumns-1)*max+1) && score === numOfColumns*max) // first box of a full column
+         ) {
+        testArray.push(
+          <View style={color ? styles.greenBoxFirst : styles.redBoxFirst} key={(i+1200).toString()} />
+        );
+      } else {
+        testArray.push(
+          <View style={styles.box} key={(i+1200).toString()} />
+        );
+      }
+      if (!(i%this.state.maxBoxes)) {
+        allArray.push(
+          <View style={styles.column} key={i+1700}>{ testArray }</View>
+        );
+        testArray = [];
+        j = 1;
+      }
+      j++;
+    }
+
+    if (testArray.length) {
+      allArray.push(
+        <View key={i+600} style={styles.column} key={i+1700}>{ testArray }</View>
+      );
+    }
+    return allArray;
   }
 
   render() {
     var myAnswers = [];
-    var mySolved = [];
-    var myMissed = [];
-    var myBoxColumnSolved = [];
-    var myBoxColumnMissed = [];
-    var solvedColumns = Math.floor(this.state.maxBoxes / this.props.solved);
-    var missedColumns = Math.floor(this.state.maxBoxes / this.props.missed);
-    var solvedMinus = 0;
-    var missedMinus = 0;
 
     if (this.props.answerInput) {
       // true, 3 Choice answers
@@ -110,61 +141,11 @@ class Home extends Component {
       );
     }
 
-    // more boxes for solved
-    if ( this.props.solved > this.state.maxBoxes ) {
-      console.log("===> number of solved coumns: ", Math.floor(this.props.solved/(this.state.maxBoxes)));
-      for (var i = 1; i <= this.state.maxBoxes; i++) {
-        myBoxColumnSolved.push(
-          <View style={styles.redBox} key={(i+300).toString()} />
-        )
-      }
-      // this.setState({subtractCoefficientSolved: 1});
-      solvedMinus = 1;
-    }
-
-    if ( this.props.missed > this.state.maxBoxes ) {
-      console.log("===> number of missed coumns: ", Math.floor(this.props.missed/(this.state.maxBoxes)));
-      for (var i = 1; i <= this.state.maxBoxes; i++) {
-        myBoxColumnMissed.push(
-          <View style={styles.redBox} key={(i+300).toString()} />
-        )
-      }
-      // this.setState({subtractCoefficientMissed: 1});
-      missedMinus = 1;
-    }
-
-    for (var i = 1; i <= (this.props.solved - this.state.maxBoxes*solvedMinus); i++) {
-      if (i === 1) {
-        mySolved.push(
-            <View style={styles.greenBoxFirst} key={(i+100).toString()} />
-        )
-      } else {
-        mySolved.push(
-          <View style={styles.redBox} key={(i+100).toString()} />
-        )
-      }
-    }
-
-    for (var i = 1; i <= (this.props.missed - this.state.maxBoxes*missedMinus); i++) {
-      if (i === 1) {
-        myMissed.push(
-          <View style={styles.redBoxFirst} key={(i+200).toString()} />
-        )
-      } else {
-        myMissed.push(
-          <View style={styles.redBox} key={(i+200).toString()} />
-        )
-      }
-    }
-
-
-
     return (
       <View style={styles.field}>
         <View style={styles.formula}>
-          <View style={styles.side} onLayout={(event) => this.findDimensions(event)}>
-            <View>{ myBoxColumnSolved }</View>
-            <View>{mySolved}</View>
+          <View style={styles.rightSide} onLayout={(event) => this.findDimensions(event)}>
+            {this._buildScore(this.props.solved,true)}
           </View>
           <View style={styles.textView}>
             <Text style={styles.text}>
@@ -175,9 +156,8 @@ class Home extends Component {
               {this.props.problem.members[1]}
             </Text>
           </View>
-          <View style={styles.side}>
-            <View>{myMissed}</View>
-            <View>{myBoxColumnMissed}</View>
+          <View style={styles.rightSide}>
+            {this._buildScore(this.props.missed,false)}
           </View>
         </View>
 

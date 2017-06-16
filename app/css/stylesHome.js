@@ -1,25 +1,22 @@
 module.exports = {
   field: {
     flex: 1,
-    // backgroundColor: '#ffffff',
   },
   formula: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'space-around',
-    flexDirection: 'row'
+    flexDirection: 'row',
   },
   answers: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    // backgroundColor: 'purple',
   },
   answer_button: {
     flex: 3,
     alignItems: 'center',
     justifyContent: 'center',
-    // backgroundColor: 'white',
     width: '100%',
     borderColor: 'lightgrey',
     borderTopWidth: 1,
@@ -28,30 +25,28 @@ module.exports = {
     fontSize: 30,
     fontWeight: 'bold',
     backgroundColor: 'rgba(0,0,0,0)',
-    color: 'white'
+    color: '#FFFFFF'
   },
   textView: {
     height: '100%',
-    width: '80%',
+    width: '50%',
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
   },
-  side: {
+  rightSide: {
     height: '100%',
-    width: '10%',
-    alignItems: 'center',
-    justifyContent: 'flex-end',
-    marginBottom: 15,
-    // flexDirection: 'row'
+    width: '25%',
+    alignItems: 'flex-end',
+    justifyContent: 'center',
+    paddingBottom: 5,
+    flexDirection: 'row',
     flexWrap: 'wrap',
   },
-  greenBox: {
-    width: 11,
-    height: 11,
-    backgroundColor: "grey",
-    borderWidth: 1,
-    borderColor: 'grey',
-    margin: 1
+  column: {
+    height: '100%',
+    flexWrap: 'wrap',
+    justifyContent: 'flex-end',
+    flexDirection: 'column'
   },
   greenBoxFirst: {
     width: 11,
@@ -61,7 +56,7 @@ module.exports = {
     borderColor: 'grey',
     margin: 1
   },
-  redBox: {
+  box: {
     width: 11,
     height: 11,
     backgroundColor: "#F2F2F2",
@@ -87,10 +82,14 @@ module.exports = {
   picker: {
     width: 100,
     margin: 25,
+    backgroundColor: 'rgba(0,0,255,0.2)',
+    borderRadius: 30,
+    borderWidth: 1
   },
   itemStyle: {
-    color: 'white',
-    fontSize: 30,
+    color: '#FFFFFF',
+    fontSize: 35,
+    fontWeight: 'bold',
   },
   pickerOkButton: {
     alignItems: 'center',
@@ -98,8 +97,10 @@ module.exports = {
     margin: 25
   },
   pickerOkButtonText: {
-    color: 'white',
     fontSize: 30,
+    fontWeight: 'bold',
+    backgroundColor: 'rgba(0,0,0,0)',
+    color: '#FFFFFF'
   },
   textDark: {
     fontSize: 30,
