@@ -1,3 +1,0 @@
-Level display is wrong formula.
-Level indicator text is now hidden
-turning off cat facts or dad jokes doesn't work properly.

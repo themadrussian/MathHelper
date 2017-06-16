@@ -16,7 +16,7 @@ import InsideContainer from './InsideContainer';
 // Define top level Container
 class AppContainer extends Component {
   componentWillMount(){
-    // create the problem before going to <Home>
+    // create the problem first
     this.props.createProblem();
   }
 
@@ -29,11 +29,11 @@ class AppContainer extends Component {
   }
 }
 
-//this function makes action fucntion available for the entire app
+//this function makes action functions available for the entire app
 function mapDispatchToProps(dispatch) {
  return bindActionCreators(ActionCreators, dispatch);
 };
 
 // and now connect it all together. plus, create an empty state object.
-//                     empty state object,      mapping actions for app
+//                      empty state object,     mapping actions for app
 export default connect((state) => {return {} }, mapDispatchToProps)(AppContainer);

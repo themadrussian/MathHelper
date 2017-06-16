@@ -8,7 +8,6 @@ export function jokeFetched(joke) {
       joke
     }
   } else {
-    // console.log("ok, try to generate the joke.");
     return Triggers.fetchJoke();
   }
 }
@@ -25,21 +24,18 @@ export function catFactFetched(fact) {
 }
 
 export function problemSolved() {
-  // console.log("===> Inside addProblem action")
   return {
     type: types.PROBLEM_SOLVED,
   }
 }
 
 export function problemNotSolved() {
-  // console.log("===> Inside deleteProblem action")
   return {
     type: types.PROBLEM_NOT_SOLVED,
   }
 }
 
 export function problemCreated(problem) {
-  // console.log("inside problemCreated action, got this problem: ", problem);
   return {
     type: types.PROBLEM_CREATED,
     problem

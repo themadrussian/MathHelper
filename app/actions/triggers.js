@@ -10,23 +10,18 @@ export function fetchJoke() {
     })
     .then((response) => response.json())
     .then((responseJson) => {
-      // console.log("my joke", responseJson);
       dispatch(Actions.jokeFetched(responseJson));
     })
     .catch((error) => {
-      // console.error("Joke fetch error:", error);
+      //nothing
     });
   }
 }
 
 export function fetchCatJoke() {
-  // console.log("===> inside fetchCatJoke");
   return (dispatch) => {
     fetch('http://catfacts-api.appspot.com/api/facts?number=1', {
       method: 'GET'
-      // headers: {
-      //   'Accept': 'application/json',
-      // },
     })
     .then((response) => response.json())
     .then((responseJson) => {
@@ -36,7 +31,7 @@ export function fetchCatJoke() {
       }
     })
     .catch((error) => {
-      // console.error("Cat fact fetch error:", error);
+      // nothing
     });
   }
 }
@@ -53,6 +48,7 @@ export function showReward(apppress = 0) {
       // decide whather to show the reward or not
       if (getState().stepsCount%getState().rewardFrequency === 0
          || (getState().solved > 0
+            && (getState().enableCatFact || getState().enableDadJokes) //at least one is enabled
             && getState().solved%getState().levelSteps === 0
             && getState().previousStepSolved)) {
         // first display a reward.
@@ -60,15 +56,6 @@ export function showReward(apppress = 0) {
         dispatch(Actions.nextRewardSet());
         dispatch(Actions.jokeFetched());
         dispatch(Actions.catFactFetched());
-
-        // // then fetch the next one
-        // if (getState().jokeOrFact) {
-        //   // true is joke
-        //   if (getState().enableDadJokes) dispatch(Actions.jokeFetched());
-        // } else {
-        //   // false is a cat fact
-        //   if (getState().enableCatFact) dispatch(Actions.catFactFetched());
-        // }
       }
     }
   }
@@ -78,7 +65,6 @@ export function createProblem() {
   return (dispatch, getState ) => {
     // first run -- pre-fetch both rewards
     if (getState().stepsCount === 0) {
-      // console.log("===> First run. Fetching both");
       dispatch(Actions.jokeFetched());
       dispatch(Actions.catFactFetched());
     };
@@ -88,14 +74,8 @@ export function createProblem() {
     if ( getState().solved > 0
       && getState().solved%getState().levelSteps === 0
       && getState().previousStepSolved) {
-
-      dispatch(Actions.seedIncreased());
-      // console.log("increasing seed to: ", getState().seed);
-      // getState().jokeOrFact ? dispatch(Actions.jokeFetched()) : dispatch(Actions.catFactFetched());
-      // dispatch(Actions.rewardToggled());
+        dispatch(Actions.seedIncreased());
     }
-
-    // _this.showReward();
 
     let antiLoop = 0;
 
@@ -104,7 +84,7 @@ export function createProblem() {
       if (antiLoop > 30 ) {
         antiLoop = 0;
         variance++;
-        console.log("Got stuck. increasing variance by 1 to:", variance);
+        // console.log("Got stuck. increasing variance by 1 to:", variance);
       }
 
       let newNumber = seed - variance + Math.floor((Math.random()*variance) + 1);
@@ -115,15 +95,12 @@ export function createProblem() {
       }
 
       if (getState().allNumbers.indexOf(newNumber) === -1 ) {
-        // console.log("newNumber: ", newNumber, "index: ", getState().allNumbers.indexOf(newNumber));
         // not there, yes newNumber is unique
         getState().allNumbers.push(newNumber);
       } else {
         // hit! we already have newNumber in allNumbers array. Get a new one.
-        // console.log("got a duplicate! ", newNumber, " already exists!");
         newNumber = uniqueNumber(seed, variance);
       }
-      // console.log("Generated unique number:", newNumber);
       return newNumber;
     }
 

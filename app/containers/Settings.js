@@ -31,8 +31,10 @@ class Settings extends Component {
 
     if (this.props.enableDadJokes) {
       dadJokeStatus.push(<Text style={styles.smallPrint} key="3buttons">enabled</Text>)
+      // dadJokeStatus.push(<Icon name="check-square-o" size={30} key="reset" />)
     } else {
       dadJokeStatus.push(<Text style={styles.smallPrint} key="3buttons">disabled</Text>)
+      // dadJokeStatus.push(<Icon name="square-o" size={30} key="reset" />)
     }
 
     if (this.props.enableCatFact) {
@@ -53,48 +55,10 @@ class Settings extends Component {
 
     return (
       <View style={styles.settingsTop}>
-
-        {/* <TouchableHighlight onPress={this._fullReset} style={styles.resetButton}>
-          <Text style={styles.saveButtonText}>Reset Everthing</Text>
-        </TouchableHighlight>
-        <View style={styles.settingsBody}>
-          <View style={styles.oneSetting}>
-            <View style={styles.oneSettingInputArea}>
-              <Text style={styles.settingName}>
-                Add Complexity Every:
-              </Text>
-              <TextInput style={styles.settingInput}
-                  keyboardType="numeric"
-                  placeholder={this.props.levelSteps.toString()}
-                  placeholderTextColor="green"
-                  maxLength={2}
-                  onChangeText={(newLevelSteps) => this.setState({newLevelSteps})}
-                />
-            </View>
-          </View>
-          <View style={styles.oneSetting}>
-            <View style={styles.oneSettingInputArea}>
-              <Text style={styles.settingName}>
-                Show Reward Every:
-              </Text>
-              <TextInput style={styles.settingInput}
-                  keyboardType="numeric"
-                  placeholder={this.props.rewardFrequency.toString()}
-                  placeholderTextColor="green"
-                  maxLength={2}
-                  onChangeText={(newRewardFrequency) => this.setState({newRewardFrequency})}
-                />
-            </View>
-          </View>
- */}
         <TouchableHighlight
           key="Dad"
           style={!this.props.enableDadJokes ? styles.settingsButton : styles.settingsButtonOff}
-          // underlayColor={ answer.correct ? "#E2F0DA" : "#FFCCCC" }
-          onPress={() => this.props.dadJokeToggled()}
-          // onHideUnderlay={() => this._onHideUnderlay(id)}
-          // onShowUnderlay={() => this._onShowUnderlay(id)}
-        >
+          onPress={() => this.props.dadJokeToggled()}>
           <View>
             <Text style={styles.text}>
               <Icon name="mars" size={30} key="reset" />&nbsp;Dad Jokes
@@ -106,11 +70,7 @@ class Settings extends Component {
         <TouchableHighlight
           key="Cat"
           style={!this.props.enableCatFact ? styles.settingsButton : styles.settingsButtonOff}
-          // underlayColor={ answer.correct ? "#E2F0DA" : "#FFCCCC" }
-          onPress={() => this.props.catFactToggled()}
-          // onHideUnderlay={() => this._onHideUnderlay(id)}
-          // onShowUnderlay={() => this._onShowUnderlay(id)}
-        >
+          onPress={() => this.props.catFactToggled()}>
           <View>
             <Text style={styles.text}>
               <Icon name="paw" size={30} key="reset" />&nbsp;Cat Facts
@@ -122,28 +82,19 @@ class Settings extends Component {
         <TouchableHighlight
           key="Answer"
           style={styles.settingsButtonOff}
-          // underlayColor={ answer.correct ? "#E2F0DA" : "#FFCCCC" }
-          onPress={() => this.props.answerInputChanged()}
-          // onHideUnderlay={() => this._onHideUnderlay(id)}
-          // onShowUnderlay={() => this._onShowUnderlay(id)}
-        >
+          onPress={() => this.props.answerInputChanged()}>
           <View>
             <Text style={styles.text}>
               <Icon name="arrows-alt" size={30} key="reset" />&nbsp;Answer Style
             </Text>
             {answerInput}
           </View>
-
         </TouchableHighlight>
 
         <TouchableHighlight
           key="Reset"
           style={styles.settingsButtonOff}
-          // underlayColor={ answer.correct ? "#E2F0DA" : "#FFCCCC" }
-          onPress={this._fullReset}
-          // onHideUnderlay={() => this._onHideUnderlay(id)}
-          // onShowUnderlay={() => this._onShowUnderlay(id)}
-        >
+          onPress={this._fullReset}>
           <View>
             <Text style={styles.text}>
               <Icon name="refresh" size={30} key="reset" />&nbsp;Reset All
@@ -153,7 +104,6 @@ class Settings extends Component {
             </Text>
           </View>
         </TouchableHighlight>
-
       </View>
     )
   }

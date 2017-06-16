@@ -40,7 +40,8 @@ class ToolBar extends Component {
         keepModalHidden = false;
       } else {
         // both are false.
-        keepModalHidden = false;
+        // keepModalHidden = false;
+        console.log("====> both are false");
       }
     }
 
@@ -68,7 +69,7 @@ class ToolBar extends Component {
       <View style={styles.toolbar}>
         {toolBarButton}
 
-        <Modal isVisible={keepModalHidden ? keepModalHidden : this.props.rewardVisible}>
+        <Modal isVisible={keepModalHidden ? false : this.props.rewardVisible}>
           <TouchableOpacity onPress={() => this.props.rewardToggled()} style={styles.modalContent}>
             <Text style={styles.modalHeader}>Time for a {rewardModalHeader}!</Text>
             <Text style={styles.rewardBody}>
