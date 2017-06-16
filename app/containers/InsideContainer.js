@@ -27,7 +27,7 @@ class InsideContainer extends Component {
         <Image
           style={{width: '100%', height: '100%'}}
           // source={{ uri: 'https://cdn.pixabay.com/photo/2017/05/11/18/20/cool-2304975_960_720.jpg' }}
-          source={require('../img/background.jpg')}
+          source={require('../img/background-darker.jpg')}
           >
           <View style={styles.container}>
             <ToolBar {...this.props} />
