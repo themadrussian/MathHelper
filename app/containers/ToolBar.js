@@ -23,7 +23,7 @@ class ToolBar extends Component {
     let rewardModalText   = "";
     let keepModalHidden   = true;
     let toolBarButton = [];
-    let settingsTitle = [];
+    // let settingsTitle = [];
 
     if (this.props.enableCatFact && this.props.enableDadJokes) {
       rewardModalHeader = this.props.jokeOrFact ? "dad joke" : "cat fact";
@@ -46,34 +46,27 @@ class ToolBar extends Component {
 
     if (!this.props.settingsVisible) {
       toolBarButton.push(
-        <TouchableOpacity onPress={this._settingsToggled} key="bars" style={styles.backButton}>
-          <Text style={styles.text}>
+        <TouchableOpacity onPress={this._settingsToggled} key="bars" style={styles.menuButton}>
+          <Text style={styles.bars}>
             <Icon name="bars" size={20} key="menu" />
           </Text>
         </TouchableOpacity>
       );
     } else {
       toolBarButton.push(
-        <TouchableOpacity onPress={this._settingsToggled} key="back" style={styles.backButton}>
-          <Text style={styles.text}>
-            <Icon name="chevron-left" size={20} key="menu" />
+        <TouchableOpacity onPress={this._settingsToggled} key="back" style={styles.menuButton}>
+          <Text style={styles.bars}>
+            <Icon name="chevron-left" size={20} key="back" />
           </Text>
         </TouchableOpacity>
       );
-      settingsTitle.push(<Text style={styles.settingsTitle} key="title">Settings</Text>);
+      // settingsTitle.push(<Text style={styles.settingsTitle} key="title">Settings</Text>);
     }
 
 
     return (
       <View style={styles.toolbar}>
         {toolBarButton}
-        {settingsTitle}
-        {/* <Text style={styles.text} key="empty">&nbsp;</Text> */}
-        {/* <TouchableOpacity onPress={this._settingsToggled} key="about" style={styles.backButton}> */}
-          {/* <Text style={styles.text}>
-            <Icon name="question-circle-o" size={20} key="menu" />
-          </Text> */}
-        {/* </TouchableOpacity> */}
 
         <Modal isVisible={keepModalHidden ? keepModalHidden : this.props.rewardVisible}>
           <TouchableOpacity onPress={() => this.props.rewardToggled()} style={styles.modalContent}>

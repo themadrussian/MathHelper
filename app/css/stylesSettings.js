@@ -34,7 +34,7 @@ module.exports = {
 
   },
   smallPrint: {
-    fontSize: 12,
+    fontSize: 15,
     fontWeight: 'normal',
     color: "white",
     textAlign: 'center',

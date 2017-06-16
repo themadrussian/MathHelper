@@ -18,36 +18,6 @@ import { levelStepsChanged, settingsToggled } from '../actions/actions';
 import styles from '../css/stylesSettings';
 
 class Settings extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      newLevelSteps: this.props.levelSteps,
-      enableDadJokes: this.props.enableDadJokes,
-      enableCatFact: this.props.enableCatFact,
-      newRewardFrequency: this.props.rewardFrequency,
-      answerInput: this.props.answerInput,
-    }
-  }
-
-  _savePressed = () => {
-    if (this.props.levelSteps != Math.abs(this.state.newLevelSteps)) {
-      this.props.levelStepsChanged(Math.abs(this.state.newLevelSteps));
-    };
-    if (this.props.rewardFrequency != Math.abs(this.state.newRewardFrequency)) {
-      this.props.rewardFrequencyChanged(Math.abs(this.state.newRewardFrequency));
-    };
-    if (this.props.enableCatFact !== this.state.enableCatFact) {
-      this.props.catFactToggled();
-    }
-    if (this.props.enableDadJokes !== this.state.enableDadJokes) {
-      this.props.dadJokeToggled();
-    }
-    if (this.props.answerInput !== this.state.answerInput){
-      this.props.answerInputChanged();
-    }
-
-    this.props.settingsToggled();
-  }
 
   _fullReset = () => {
     this.props.fullReset();
@@ -56,14 +26,28 @@ class Settings extends Component {
 
   render() {
     let answerInput = [];
+    let dadJokeStatus = [];
+    let catFactStatus = [];
+
+    if (this.props.enableDadJokes) {
+      dadJokeStatus.push(<Text style={styles.smallPrint} key="3buttons">enabled</Text>)
+    } else {
+      dadJokeStatus.push(<Text style={styles.smallPrint} key="3buttons">disabled</Text>)
+    }
+
+    if (this.props.enableCatFact) {
+      catFactStatus.push(<Text style={styles.smallPrint} key="3buttons">enabled</Text>);
+    } else {
+      catFactStatus.push(<Text style={styles.smallPrint} key="3buttons">disabled</Text>);
+    }
 
     if (this.props.answerInput) {
       answerInput.push(
-          <Text style={styles.text} key="3buttons">3 Buttons</Text>
+          <Text style={styles.smallPrint} key="3buttons">3 Buttons</Text>
       );
     } else {
       answerInput.push(
-          <Text style={styles.text} key="rolldown">Rolldown</Text>
+          <Text style={styles.smallPrint} key="rolldown">Rolldown</Text>
       );
     }
 
@@ -102,16 +86,39 @@ class Settings extends Component {
                 />
             </View>
           </View>
-          <View style={styles.oneSettingInputArea}>
-            <Text style={styles.settingName}>
-              {this.state.answerInput ? "3 Choice Answers" : "Rolldown Answer Pick"}
+ */}
+        <TouchableHighlight
+          key="Dad"
+          style={!this.props.enableDadJokes ? styles.settingsButton : styles.settingsButtonOff}
+          // underlayColor={ answer.correct ? "#E2F0DA" : "#FFCCCC" }
+          onPress={() => this.props.dadJokeToggled()}
+          // onHideUnderlay={() => this._onHideUnderlay(id)}
+          // onShowUnderlay={() => this._onShowUnderlay(id)}
+        >
+          <View>
+            <Text style={styles.text}>
+              <Icon name="mars" size={30} key="reset" />&nbsp;Dad Jokes
             </Text>
-            <Switch
-              onValueChange={(value) => this.setState({answerInput: value})}
-              onTintColor="#00ff00"
-              // tintColor="#0000ff"
-              value={this.state.answerInput} />
-          </View> */}
+            {dadJokeStatus}
+          </View>
+        </TouchableHighlight>
+
+        <TouchableHighlight
+          key="Cat"
+          style={!this.props.enableCatFact ? styles.settingsButton : styles.settingsButtonOff}
+          // underlayColor={ answer.correct ? "#E2F0DA" : "#FFCCCC" }
+          onPress={() => this.props.catFactToggled()}
+          // onHideUnderlay={() => this._onHideUnderlay(id)}
+          // onShowUnderlay={() => this._onShowUnderlay(id)}
+        >
+          <View>
+            <Text style={styles.text}>
+              <Icon name="paw" size={30} key="reset" />&nbsp;Cat Facts
+            </Text>
+            {catFactStatus}
+          </View>
+        </TouchableHighlight>
+
         <TouchableHighlight
           key="Answer"
           style={styles.settingsButtonOff}
@@ -129,29 +136,6 @@ class Settings extends Component {
 
         </TouchableHighlight>
 
-
-        <TouchableHighlight
-          key="Dad"
-          style={this.props.enableDadJokes ? styles.settingsButton : styles.settingsButtonOff}
-          // underlayColor={ answer.correct ? "#E2F0DA" : "#FFCCCC" }
-          onPress={() => this.props.dadJokeToggled()}
-          // onHideUnderlay={() => this._onHideUnderlay(id)}
-          // onShowUnderlay={() => this._onShowUnderlay(id)}
-        >
-          <Text style={styles.text}><Icon name="mars" size={30} key="reset" />&nbsp;Dad Facts</Text>
-        </TouchableHighlight>
-
-        <TouchableHighlight
-          key="Cat"
-          style={this.props.enableCatFact ? styles.settingsButton : styles.settingsButtonOff}
-          // underlayColor={ answer.correct ? "#E2F0DA" : "#FFCCCC" }
-          onPress={() => this.props.catFactToggled()}
-          // onHideUnderlay={() => this._onHideUnderlay(id)}
-          // onShowUnderlay={() => this._onShowUnderlay(id)}
-        >
-          <Text style={styles.text}><Icon name="paw" size={30} key="reset" />&nbsp;Cat Facts</Text>
-        </TouchableHighlight>
-
         <TouchableHighlight
           key="Reset"
           style={styles.settingsButtonOff}
@@ -160,7 +144,14 @@ class Settings extends Component {
           // onHideUnderlay={() => this._onHideUnderlay(id)}
           // onShowUnderlay={() => this._onShowUnderlay(id)}
         >
-          <Text style={styles.text}><Icon name="refresh" size={30} key="reset" />&nbsp;Reset All</Text>
+          <View>
+            <Text style={styles.text}>
+              <Icon name="refresh" size={30} key="reset" />&nbsp;Reset All
+            </Text>
+            <Text style={styles.smallPrint}>
+              Solved: {this.props.solved}&nbsp;Missed: {this.props.missed}
+            </Text>
+          </View>
         </TouchableHighlight>
 
       </View>
@@ -175,6 +166,8 @@ function mapStateToProps(state){
     enableCatFact: state.enableCatFact,
     enableDadJokes: state.enableDadJokes,
     answerInput: state.answerInput,
+    missed: state.missed,
+    solved: state.solved,
   }
 };
 

@@ -21,6 +21,15 @@ module.exports = {
     color: 'white',
     // borderWidth: 1,
   },
+  menuButton:{
+    width: '100%',
+    justifyContent: 'flex-start',
+  },
+  bars: {
+    color: 'white',
+    backgroundColor: 'rgba(0,0,0,0)',
+    margin: 6,
+  },
   toolbar: {
     // flex: 1,
     flexDirection: 'row',
