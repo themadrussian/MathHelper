@@ -8,7 +8,7 @@ const {
   TouchableOpacity,
 } = ReactNative;
 import Modal from 'react-native-modal';
-import Settings from './Settings';
+// import Settings from './Settings';
 import styles from '../css/stylesToolBar';
 
 class ToolBar extends Component {
@@ -22,6 +22,8 @@ class ToolBar extends Component {
     let rewardModalHeader = "";
     let rewardModalText   = "";
     let keepModalHidden   = true;
+    let toolBarButton = [];
+    // let settingsTitle = [];
 
     if (this.props.enableCatFact && this.props.enableDadJokes) {
       rewardModalHeader = this.props.jokeOrFact ? "dad joke" : "cat fact";
@@ -38,28 +40,33 @@ class ToolBar extends Component {
         keepModalHidden = false;
       } else {
         // both are false.
+        keepModalHidden = false;
       }
     }
 
+    if (!this.props.settingsVisible) {
+      toolBarButton.push(
+        <TouchableOpacity onPress={this._settingsToggled} key="bars" style={styles.menuButton}>
+          <Text style={styles.bars}>
+            <Icon name="bars" size={20} key="menu" />
+          </Text>
+        </TouchableOpacity>
+      );
+    } else {
+      toolBarButton.push(
+        <TouchableOpacity onPress={this._settingsToggled} key="back" style={styles.menuButton}>
+          <Text style={styles.bars}>
+            <Icon name="chevron-left" size={20} key="back" />
+          </Text>
+        </TouchableOpacity>
+      );
+      // settingsTitle.push(<Text style={styles.settingsTitle} key="title">Settings</Text>);
+    }
+
+
     return (
       <View style={styles.toolbar}>
-        <TouchableOpacity onPress={this._rewardToggled}>
-          <Text style={styles.text}>
-            <Icon name="thumbs-o-up" color="green" size={20} /> {this.props.solved}
-          </Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity onPress={this._settingsToggled}>
-          <Text style={styles.text}>
-            <Icon name="cog" size={20}/>
-          </Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity onPress={this._rewardToggled}>
-          <Text style={styles.text}>
-            <Icon name="thumbs-o-down" color="red" size={20} /> {this.props.missed}
-          </Text>
-        </TouchableOpacity>
+        {toolBarButton}
 
         <Modal isVisible={keepModalHidden ? keepModalHidden : this.props.rewardVisible}>
           <TouchableOpacity onPress={() => this.props.rewardToggled()} style={styles.modalContent}>
@@ -73,12 +80,6 @@ class ToolBar extends Component {
           </TouchableOpacity>
         </Modal>
 
-        <Modal
-          style={styles.settingsModal}
-          isVisible={this.props.settingsVisible}>
-          <Settings {...this.props}/>
-        </Modal>
-
       </View>
     )
   }
@@ -87,18 +88,13 @@ class ToolBar extends Component {
 
 function mapStateToProps(state){
   return {
-    // stepsCount: state.stepsCount,
-    solved: state.solved,
-    missed: state.missed,
-    levelSteps: state.levelSteps,
-    stepsCount: state.stepsCount,
     dadJoke: state.dadJoke,
+    catFact: state.catFact,
     rewardVisible: state.rewardVisible,
     jokeOrFact: state.jokeOrFact,
-    catFact: state.catFact,
-    settingsVisible: state.settingsVisible,
     enableCatFact: state.enableCatFact,
     enableDadJokes: state.enableDadJokes,
+    settingsVisible: state.settingsVisible,
   }
 };
 

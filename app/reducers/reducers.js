@@ -86,7 +86,7 @@ export const rewardVisible = createReducer(false, {
   }
 });
 
-export const settingsVisible = createReducer(false, {
+export const settingsVisible = createReducer(true, { //TODO change back to false
   [types.SETTINGS_TOGGLED](state, action){
     return ( state ? false : true );
   }
