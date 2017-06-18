@@ -1,4 +1,7 @@
 {
   "name": "MathHelper",
-  "displayName": "MathHelper"
+  "displayName": "MathHelper",
+  "version": "beta1.0",
+  "author": "Mark Rogov",
+  "license": "MIT"
 }

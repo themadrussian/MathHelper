@@ -35,5 +35,5 @@ function mapDispatchToProps(dispatch) {
 };
 
 // and now connect it all together. plus, create an empty state object.
-//                      empty state object,     mapping actions for app
+//                       empty state object,     map actions for app
 export default connect((state) => {return {} }, mapDispatchToProps)(AppContainer);

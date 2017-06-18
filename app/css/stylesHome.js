@@ -14,12 +14,21 @@ module.exports = {
     justifyContent: 'center',
   },
   answer_button: {
-    flex: 3,
+    flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
     width: '100%',
     borderColor: 'lightgrey',
     borderTopWidth: 1,
+  },
+  manualAnswer: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: '100%',
+    borderColor: 'lightgrey',
+    borderTopWidth: 1,
+    borderBottomWidth: 1,
   },
   text: {
     fontSize: 30,
@@ -71,36 +80,6 @@ module.exports = {
     borderWidth: 1,
     borderColor: 'grey',
     margin: 1
-  },
-  pickerBigView: {
-    flex: 1,
-    flexDirection: 'row',
-  },
-  roller: {
-    flex: 2,
-  },
-  picker: {
-    width: 100,
-    margin: 25,
-    backgroundColor: 'rgba(0,0,255,0.2)',
-    borderRadius: 30,
-    borderWidth: 1
-  },
-  itemStyle: {
-    color: '#FFFFFF',
-    fontSize: 35,
-    fontWeight: 'bold',
-  },
-  pickerOkButton: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    margin: 25
-  },
-  pickerOkButtonText: {
-    fontSize: 30,
-    fontWeight: 'bold',
-    backgroundColor: 'rgba(0,0,0,0)',
-    color: '#FFFFFF'
   },
   textDark: {
     fontSize: 30,

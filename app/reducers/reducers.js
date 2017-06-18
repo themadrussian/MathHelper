@@ -117,16 +117,45 @@ export const enableDadJokes = createReducer(true, {
   }
 });
 
-export const rewardHeader = createReducer("dad joke", {
+export const manualAnswer = createReducer("", {
+  [types.KEYBOARD_BUTTON_PRESSED](state, action){
+    let tempState = state;
 
+    switch (action.key) {
+      case "d":
+        if (tempState.length != 0) {
+          tempState = tempState.slice(0,tempState.length-1);
+        }
+        break;
+      case "-":
+        if (tempState.slice(0,1) === "-") {
+          tempState = tempState.slice(1,tempState.length);
+        } else {
+          tempState = "-".concat(tempState.toString());
+        }
+        break;
+      default:
+        if (tempState.length === 0) {
+          tempState=action.key.toString();
+        } else {
+          tempState=state.concat(action.key);
+        }
+    }
+
+    return tempState;
+  },
+
+  [types.PROBLEM_SOLVED](state, action){
+    return "";
+  },
+
+  [types.PROBLEM_NOT_SOLVED](state, action){
+    return "";
+  },
 });
 
-export const rewardBody = createReducer("...wait for it...", {
-
-});
-
-export const answerInput = createReducer(true, {
-  [types.ANSWER_INPUT_CHANGED](state, action){
+export const manualKeyboard = createReducer(false, {
+  [types.MANUAL_KEYBOARD_TOGGLED](state, action){
     return (state ? false : true );
   }
 })

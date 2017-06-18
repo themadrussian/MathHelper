@@ -1,12 +1,4 @@
 module.exports = {
-  text: {
-    flex: 1,
-    fontSize: 20,
-    fontWeight: 'bold',
-    margin: 6,
-    backgroundColor: 'rgba(0,0,0,0)',
-    color: 'white',
-  },
   settingsTitle: {
     flex: 3,
     fontSize: 20,
@@ -29,12 +21,6 @@ module.exports = {
   toolbar: {
     flexDirection: 'row',
     justifyContent: 'center',
-
-  },
-  backButton: {
-    flex: 1,
-    justifyContent: 'center',
-    backgroundColor: 'rgba(0,0,0,0)',
   },
   modalContent: {
     backgroundColor: 'white',
@@ -64,8 +50,4 @@ module.exports = {
     color: "white",
     textAlign: 'center'
   },
-  settingsModal: {
-    justifyContent: 'flex-start',
-    margin: 22
-  }
 }

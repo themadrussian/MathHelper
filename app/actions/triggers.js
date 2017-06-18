@@ -18,7 +18,7 @@ export function fetchJoke() {
   }
 }
 
-export function fetchCatJoke() {
+export function fetchCatFact() {
   return (dispatch) => {
     fetch('http://catfacts-api.appspot.com/api/facts?number=1', {
       method: 'GET'
@@ -147,5 +147,11 @@ export function createProblem() {
     // console.log("===> getState.scoreCount", getState().scoreCount);
     dispatch(Actions.problemCreated(myProblem));
     dispatch(Actions.answersCreated(myAnswers));
+  }
+}
+
+export function keyboardButtonPressedTrigger(key) {
+  return (dispatch) => {
+    dispatch(Actions.keyboardButtonPressed(key));
   }
 }

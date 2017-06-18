@@ -43,13 +43,13 @@ class Settings extends Component {
       catFactStatus.push(<Text style={styles.smallPrint} key="3buttons">disabled</Text>);
     }
 
-    if (this.props.answerInput) {
+    if (this.props.manualKeyboard) {
       answerInput.push(
-          <Text style={styles.smallPrint} key="3buttons">3 Buttons</Text>
+          <Text style={styles.smallPrint} key="3buttons">Keyboard</Text>
       );
     } else {
       answerInput.push(
-          <Text style={styles.smallPrint} key="rolldown">Rolldown</Text>
+          <Text style={styles.smallPrint} key="rolldown">3 Buttons</Text>
       );
     }
 
@@ -57,7 +57,7 @@ class Settings extends Component {
       <View style={styles.settingsTop}>
         <TouchableHighlight
           key="Dad"
-          style={!this.props.enableDadJokes ? styles.settingsButton : styles.settingsButtonOff}
+          style={ !this.props.enableDadJokes ? styles.settingsButton : styles.settingsButtonOff }
           onPress={() => this.props.dadJokeToggled()}>
           <View>
             <Text style={styles.text}>
@@ -81,11 +81,11 @@ class Settings extends Component {
 
         <TouchableHighlight
           key="Answer"
-          style={styles.settingsButtonOff}
-          onPress={() => this.props.answerInputChanged()}>
+          style={!this.props.manualKeyboard ? styles.settingsButton : styles.settingsButtonOff}
+          onPress={() => this.props.manualKeyboardToggled()}>
           <View>
             <Text style={styles.text}>
-              <Icon name="arrows-alt" size={30} key="reset" />&nbsp;Answer Style
+              <Icon name="arrows-alt" size={30} key="ans_style" />&nbsp;Answer Style
             </Text>
             {answerInput}
           </View>
@@ -115,7 +115,7 @@ function mapStateToProps(state){
     rewardFrequency: state.rewardFrequency,
     enableCatFact: state.enableCatFact,
     enableDadJokes: state.enableDadJokes,
-    answerInput: state.answerInput,
+    manualKeyboard: state.manualKeyboard,
     missed: state.missed,
     solved: state.solved,
   }

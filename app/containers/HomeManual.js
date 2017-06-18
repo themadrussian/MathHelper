@@ -11,13 +11,18 @@ const {
 } = ReactNative;
 import _ from 'underscore';
 import styles from '../css/stylesHome';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import MyKeyboard from './MyKeyboard';
 
-class Home extends Component {
+class HomeManual extends Component {
   constructor(props) {
     super(props)
     this.state = {
+      selected1: this.props.seed,
       maxBoxes: 5,
       pressed: [false,false,false],
+      subtractCoefficientSolved: 0,
+      subtractCoefficientMissed: 0,
     }
   }
 
@@ -90,24 +95,13 @@ class Home extends Component {
     return allArray;
   }
 
+  _checkAnswer() {
+    if (this.props.manualAnswer !== "") {
+      _.findWhere(this.props.answers, {correct: true}).value === Number(this.props.manualAnswer) ? this.problemSolved() : this.problemNotSolved()
+    }
+  }
+
   render() {
-    var myAnswers = [];
-
-    this.props.answers.forEach( (answer, id) => {
-      myAnswers.push(
-        <TouchableHighlight
-          key={id}
-          style={styles.answer_button}
-          underlayColor={ answer.correct ? "#E2F0DA" : "#FFCCCC" }
-          onPress={answer.correct ? () => this.problemSolved() : () => this.problemNotSolved()}
-          onHideUnderlay={() => this._onHideUnderlay(id)}
-          onShowUnderlay={() => this._onShowUnderlay(id)}
-        >
-          <Text style={this.state.pressed[id] ? styles.textDark : styles.text}>{answer.value}</Text>
-        </TouchableHighlight>
-      );
-    })
-
     return (
       <View style={styles.field}>
         <View style={styles.formula}>
@@ -129,7 +123,18 @@ class Home extends Component {
         </View>
 
         <View style={styles.answers}>
-            {myAnswers}
+          <TouchableHighlight
+            key="del"
+            style={styles.manualAnswer}
+            underlayColor={ _.findWhere(this.props.answers, {correct: true}).value === Number(this.props.manualAnswer) ? "#E2F0DA" : "#FFCCCC"}
+            onHideUnderlay={() => this._onHideUnderlay(0)}
+            onShowUnderlay={() => this._onShowUnderlay(0)}
+            onPress={ () => this._checkAnswer() }>
+            <Text style={this.state.pressed[0] ? styles.textDark : styles.text}>
+              {this.props.manualAnswer}
+            </Text>
+          </TouchableHighlight>
+          <MyKeyboard {...this.props} />
         </View>
       </View>
     )
@@ -140,9 +145,12 @@ function mapStateToProps(state){
   return {
     problem: state.problem,
     answers: state.answers,
+    seed: state.seed,
+    answerInput: state.answerInput,
     solved: state.solved,
-    missed: state.missed
+    missed: state.missed,
+    manualAnswer: state.manualAnswer,
   }
 };
 
-export default connect(mapStateToProps)(Home);
+export default connect(mapStateToProps)(HomeManual);

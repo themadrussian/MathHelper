@@ -19,7 +19,7 @@ export function catFactFetched(fact) {
       fact
     }
   } else {
-    return Triggers.fetchCatJoke();
+    return Triggers.fetchCatFact();
   }
 }
 
@@ -101,15 +101,22 @@ export function nextRewardSet() {
   }
 }
 
-export function answerInputChanged() {
-  return {
-    type: types.ANSWER_INPUT_CHANGED
-  }
-}
-
 export function fullReset() {
   // Triggers.createProblem();
   return {
     type: types.FULL_RESET,
+  }
+}
+
+export function keyboardButtonPressed(key) {
+  return {
+    type: types.KEYBOARD_BUTTON_PRESSED,
+    key
+  }
+}
+
+export function manualKeyboardToggled() {
+  return {
+    type: types.MANUAL_KEYBOARD_TOGGLED,
   }
 }
