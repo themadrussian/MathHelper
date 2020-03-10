@@ -14,7 +14,7 @@ module.exports = {
     justifyContent: 'center',
   },
   answer_button: {
-    flex: 3,
+    flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
     width: '100%',

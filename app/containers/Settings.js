@@ -1,10 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import ReactNative from 'react-native';
-import { bindActionCreators } from 'redux';
-import { ActionCreators } from '../actions';
-import Icon from 'react-native-vector-icons/FontAwesome';
-const {
+import {
   View,
   Text,
   TouchableHighlight,
@@ -12,7 +8,10 @@ const {
   StyleSheet,
   TextInput,
   Switch
-} = ReactNative;
+} from 'react-native';
+import { bindActionCreators } from 'redux';
+import { ActionCreators } from '../actions';
+import Icon from 'react-native-vector-icons/FontAwesome';
 import Modal from 'react-native-modal';
 import { levelStepsChanged, settingsToggled } from '../actions/actions';
 import styles from '../css/stylesSettings';

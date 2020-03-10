@@ -4,7 +4,7 @@ import { createStore, applyMiddleware, combineReducers, compose } from 'redux'
 import thunkMiddleware from 'redux-thunk'
 import { createLogger } from 'redux-logger'
 
-import { AppRegistry } from 'react-native'
+// import { AppRegistry } from 'react-native'
 import AppContainer from './app/containers/AppContainer'
 import {reducer} from './app/reducers'
 
@@ -24,10 +24,20 @@ function configureStore(initialState) {
 
 const store = configureStore({});
 
-const App = () => (
-  <Provider store={store}>
-    <AppContainer />
-  </Provider>
-);
-
-AppRegistry.registerComponent('MathHelper', () => App);
+export default class App extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      count: 1,
+      myProblem: {},
+      myAnswers: [],
+    }
+  }
+  render() {
+    return (
+      <Provider store={store}>
+        <AppContainer />
+      </Provider>
+    )
+  }
+}

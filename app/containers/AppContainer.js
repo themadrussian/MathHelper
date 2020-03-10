@@ -1,7 +1,6 @@
 //React & React-Native libs
 import React, { Component } from 'react';
-import ReactNative from 'react-native';
-const { View } = ReactNative;
+import { View, StyleSheet } from 'react-native';
 
 //Redux libs
 import { connect } from 'react-redux';
@@ -15,19 +14,22 @@ import InsideContainer from './InsideContainer';
 
 // Define top level Container
 class AppContainer extends Component {
-  componentWillMount(){
-    // create the problem before going to <Home>
-    this.props.createProblem();
-  }
-
   render() {
+    this.props.createProblem();
     return (
-      <View>
+      <View id="AppContainer" style={styles.container}>
         <InsideContainer {...this.props}/>
       </View>
     )
   }
 }
+
+const styles = StyleSheet.create({
+   container: {
+      flex: 1,
+   },
+
+});
 
 //this function makes action fucntion available for the entire app
 function mapDispatchToProps(dispatch) {

@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import ReactNative from 'react-native';
-const {
+import {
   View,
   Text,
   TouchableHighlight,
   TouchableOpacity,
   StyleSheet,
   Picker
-} = ReactNative;
+} from 'react-native';
 import _ from 'underscore';
 import styles from '../css/stylesHome';
 

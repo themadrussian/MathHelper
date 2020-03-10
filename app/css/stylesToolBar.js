@@ -23,7 +23,7 @@ module.exports = {
   },
   menuButton:{
     width: '100%',
-    justifyContent: 'flex-start',
+    // justifyContent: 'flex-start',
   },
   bars: {
     color: 'white',
@@ -42,36 +42,5 @@ module.exports = {
     // margin: 6,
     backgroundColor: 'rgba(0,0,0,0)',
   },
-  modalContent: {
-    backgroundColor: 'white',
-    padding: 22,
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 4,
-    borderColor: 'rgba(0, 0, 0, 0.1)',
-  },
-  modalHeader: {
-    fontSize: 25,
-    fontWeight: 'bold',
-    color: "green",
-  },
-  rewardBody: {
-    fontSize: 20,
-    fontWeight: 'bold',
-    color: "darkblue",
-    padding: 20,
-    textAlign: 'center',
-    borderColor: "darkblue",
-    borderRadius: 5,
-  },
-  smallPrint: {
-    fontSize: 12,
-    fontWeight: 'normal',
-    color: "white",
-    textAlign: 'center'
-  },
-  settingsModal: {
-    justifyContent: 'flex-start',
-    margin: 22
-  }
+
 }

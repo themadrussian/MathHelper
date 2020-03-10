@@ -1,34 +1,36 @@
 {
   "name": "MathHelper",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "desciption": "Mobile app for teaching kids math",
-  "private": true,
+  "main": "node_modules/expo/AppEntry.js",
   "scripts": {
-    "start": "node node_modules/react-native/local-cli/cli.js start",
-    "test": "jest"
+    "start": "expo start",
+    "android": "expo start --android",
+    "ios": "expo start --ios",
+    "web": "expo start --web",
+    "eject": "expo eject"
   },
   "dependencies": {
-    "lodash": "^4.17.4",
-    "react": "16.0.0-alpha.6",
+    "expo": "~36.0.0",
+    "react": "~16.9.0",
+    "react-dom": "~16.9.0",
     "react-logger": "^1.1.0",
-    "react-native": "0.44.0",
-    "react-native-modal": "^2.4.0",
-    "react-native-vector-icons": "^4.1.1",
-    "react-redux": "^5.0.5",
-    "redux": "^3.6.0",
+    "react-native": "https://github.com/expo/react-native/archive/sdk-36.0.0.tar.gz",
+    "react-native-modal": "^11.5.4",
+    "react-native-restart": "0.0.14",
+    "react-native-vector-icons": "^6.6.0",
+    "react-native-web": "~0.11.7",
+    "react-redux": "^7.2.0",
+    "redux": "^4.0.5",
     "redux-logger": "^3.0.6",
-    "redux-thunk": "^2.2.0",
-    "underscore": "^1.8.3"
+    "redux-thunk": "^2.3.0",
+    "underscore": "^1.9.2"
   },
   "devDependencies": {
-    "babel-jest": "20.0.3",
-    "babel-preset-react-native": "1.9.2",
-    "jest": "20.0.3",
-    "react-test-renderer": "16.0.0-alpha.6"
+    "babel-preset-expo": "~8.0.0",
+    "@babel/core": "^7.0.0"
   },
-  "jest": {
-    "preset": "react-native"
-  },
+  "private": true,
   "author": "Mark Rogov",
   "homepage": "https://github.com/themadrussian/MathHelper",
   "license": "MIT"

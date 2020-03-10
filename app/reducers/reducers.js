@@ -82,11 +82,12 @@ export const catFact = createReducer(["...wait for a fresh cat fact...",], {
 
 export const rewardVisible = createReducer(false, {
   [types.REWARD_TOGGLED](state, action){
+    // console.log("reward toggled from:", state);
     return ( state ? false : true );
   }
 });
 
-export const settingsVisible = createReducer(true, { //TODO change back to false
+export const settingsVisible = createReducer(false, {
   [types.SETTINGS_TOGGLED](state, action){
     return ( state ? false : true );
   }

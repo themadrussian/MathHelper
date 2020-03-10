@@ -14,7 +14,7 @@ export function fetchJoke() {
       dispatch(Actions.jokeFetched(responseJson));
     })
     .catch((error) => {
-      // console.error("Joke fetch error:", error);
+      console.error("Joke fetch error:", error);
     });
   }
 }
@@ -22,21 +22,21 @@ export function fetchJoke() {
 export function fetchCatJoke() {
   // console.log("===> inside fetchCatJoke");
   return (dispatch) => {
-    fetch('http://catfacts-api.appspot.com/api/facts?number=1', {
-      method: 'GET'
-      // headers: {
-      //   'Accept': 'application/json',
-      // },
+    fetch('https://catfact.ninja/fact?max_length=140', {
+      method: 'GET',
+      headers: {
+        'Accept': 'application/json',
+      },
     })
     .then((response) => response.json())
     .then((responseJson) => {
       // console.log("my cat fact", responseJson);
-      if (responseJson.success) {
-        dispatch(Actions.catFactFetched(responseJson.facts));
-      }
+      // if (responseJson.success) {
+        dispatch(Actions.catFactFetched(responseJson));
+      // }
     })
     .catch((error) => {
-      // console.error("Cat fact fetch error:", error);
+      console.error("Cat fact fetch error:", error);
     });
   }
 }
