@@ -4,17 +4,16 @@ module.exports = {
   },
   darkenBackground: {
     flex: 1,
-    backgroundColor: 'rgba(0,0,0,0.5)'
+    backgroundColor: 'rgba(0,0,0,0.5)',
+    // top: 34,
+    // marginTop: (Platform.OS == 'ios') ? 44 : 0,
   },
   modal: {
     flex: 1,
-    padding: 40,
     alignContent: "center",
-    position: "absolute",
-    left: 5,
-    top: 50,
-    right: 5,
     borderWidth: 0,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   modalContent: {
     backgroundColor: 'white',

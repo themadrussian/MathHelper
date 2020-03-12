@@ -7,6 +7,7 @@ import  {
   Modal,
   TouchableOpacity,
   Text,
+  SafeAreaView,
 } from 'react-native';
 
 // App Containers
@@ -60,7 +61,7 @@ class InsideContainer extends Component {
         <Modal
             style={styles.modal}
             animationType="fade"
-            transparent = {false}
+            transparent = {true}
             visible={true}>
           <TouchableOpacity onPress={() => this.props.rewardToggled()} style={styles.modalContent}>
             <Text style={styles.modalHeader}>Time for a {rewardModalHeader}!</Text>
@@ -80,11 +81,11 @@ class InsideContainer extends Component {
         <ImageBackground
          source={{ uri: 'https://cdn.pixabay.com/photo/2017/05/11/18/20/cool-2304975_960_720.jpg' }}
          style = {styles.container}>
-           <View style={styles.darkenBackground}>
+           <SafeAreaView style={styles.darkenBackground}>
             <ToolBar {...this.props} />
             {homeOrSettings}
 
-          </View>
+          </SafeAreaView>
         </ImageBackground>
       </View>
     )
